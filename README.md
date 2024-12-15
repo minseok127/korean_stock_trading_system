@@ -4,6 +4,58 @@ To implement a custom trading strategy, the user must define a class that inheri
 
 For example, to get the opening price of the 30-minute candlestick formed between 9:30 and 10:00, the user can call the function *get_chart_data_30min("A123456", 93000, OPEN)*. Users can place sell orders using functions starting with *sell_order_* or place buy orders using functions starting with *buy_order_*.
 
+These are the functions provided by default in the Trader class:
+```
+    /* Orders at limit price */
+    QString buy_order_at_limit_price(QString code, int price, int quantity);
+    QString sell_order_at_limit_price(QString code, int price, int quantity);
+
+    QString modify_buy_order_at_limit_price(QString originOrderNo, int price, int quantity = 0); // quantity = 0 means all remained quantity
+    QString modify_sell_order_at_limit_price(QString originOrderNo, int price, int quantity = 0);// quantity = 0 means all remained quantity
+
+    QString cancel_buy_order_at_limit_price(QString originOrderNo, int quantity = 0); // quantity = 0 means all remained quantity
+    QString cancel_sell_order_at_limit_price(QString originOrderNo, int quantity = 0); // quantity = 0 means all remained quantity
+
+    /* Orders at conditional price */
+    QString sell_order_at_conditional_price(QString code, int price, int quantity);
+
+    /* Orders at market price */
+    QString sell_order_at_market_price(QString code, int quantity);
+
+    /* Wait */
+    void wait_until(int time);
+
+    /* Get buyable money */
+    int get_money();
+
+    /* Get sellable quantity */
+    int get_sellable(QString code);
+
+    /* Register for real data */
+    /* Return screen number */
+    QStringList register_code_for_real_data(QStringList codeList, FID type);
+
+    /* Remove real data screen */
+    void unregister_screen(QString screennum);
+
+    /* 현재가 구하기 */
+    int get_FID(QString code, FID fid);
+
+    /* 보유 중인 종목 리스트 구하기 */
+    QStringList get_holding_code_list();
+
+    /* 차트 데이터 구하기 */
+    int get_chart_data_30min(QString code, int time, ChartDataType type);
+    int get_chart_data_5min(QString code, int time, ChartDataType type);
+
+    /* 코스닥 혹은 코스피의 모든 종목 코드 구하기 */
+    QStringList get_code_list(MarketType marketType);
+
+    /* 대기중인 주문번호 리스트 구하기 */
+    QStringList get_buy_order_number_list(QString code);
+    QStringList get_sell_order_number_list(QString code);
+```
+
 In the main function, users must declare variables to manage the Trader classes and the GUI as follows:
 ```
 ControlCenter* center = new ControlCenter;
