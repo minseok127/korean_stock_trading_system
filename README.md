@@ -18,6 +18,6 @@ w.board(center);
 w.show();
 ```
 
-After this setup, users can log in to Kiwoom Securities and register an account number via the GUI, and the traders will begin trading.
+After this setup, users can login to Kiwoom Securities and register an account number via the GUI, and the traders will begin trading.
 
-The price and volume data provided by the Trader class are only for data generated during the current trading session. To access historical data from previous days, users must utilize a separate database.
+The price and volume data provided by the Trader class are only for data generated during the current trading day. To access historical data from previous days, users must use their own database.
